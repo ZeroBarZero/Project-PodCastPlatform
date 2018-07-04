@@ -27,9 +27,7 @@ app.get(['/','/:page'],(req, res) => {
   else{ //root
     res.render('index');
   }
-
 });
-
 
 
 app.listen(3000);
