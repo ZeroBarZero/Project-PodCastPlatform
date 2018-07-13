@@ -1,10 +1,15 @@
-// set up ==========================================
 var express = require('express');
 var expressLayouts = require('express-ejs-layouts');
 var path = require('path');
+var config = require('./config/config.json')
+
+var redis = require('redis');
+var redisStore = require('connect-redis')(session);
+var client = redis.createClient();
 
 var passport   = require('passport');
 var session    = require('express-session');
+
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
@@ -21,9 +26,19 @@ app.use('/css',express.static(path.join(__dirname,'views','_assets','css')));
 app.use('/fonts',express.static(path.join(__dirname,'views','_assets','fonts')));
 app.use('/img',express.static(path.join(__dirname,'views','_assets','img')));
 
-app.use(session({ secret: 'rellikgubhcs',resave: true, saveUninitialized:true})); // session secret
+app.use(session({
+  store: new RedisStore({ host: config.redis.host, port: config.redis.port, client: client }),
+  key: config.session.key,
+  secret: config.session.secret,
+  cookie: {
+    maxAge: 1000 * 60 * 60
+  },
+  saveUninitialized: false,
+  resave: false
+}));
+
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session());
 app.use(flash());
 
 app.set('views', path.join(__dirname,'/views'));
@@ -62,8 +77,8 @@ app.post('/login', passport.authenticate('local-login', {
             }
         res.redirect('/');
     });
-app.post('/register', passport.authenticate('local-signup', {
-        successRedirect : '/404', // redirect to the secure profile section
+app.post('/register', passport.authenticate('local-register', {
+        successRedirect : '/login', // redirect to the secure profile section
     		failureRedirect : '/register', // redirect back to the signup page if there is an error
     		failureFlash : true // allow flash messages
     }));
