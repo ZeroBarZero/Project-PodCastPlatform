@@ -2,20 +2,21 @@
 <!DOCTYPE html>
 <div>
   <h3>로그인</h3>
-  <form action="" method="post">
+  <% if (message.length > 0) { %>
+               <div class="alert alert-danger"><%= message %></div>
+           <% } %>
+  <form action="/login" method="post">
       <div class="form-group">
           <label>Email</label>
-          <input type="text" class="form-control" name="email">
+          <input type="text" class="form-control" name="username">
       </div>
       <div class="form-group">
           <label>Password</label>
           <input type="password" class="form-control" name="password">
       </div>
-
-      <button type="submit" class="btn btn-warning btn-lg">Login</button>
+      <button type="submit" class="btn btn-warning btn-lg">확인</button>
   </form>
 
   <p>계정이 없다면? <a href="/register">회원가입</a></p>
   <p>Or go <a href="/">home</a>.</p>
-
 </div>
