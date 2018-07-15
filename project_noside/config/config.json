@@ -4,6 +4,7 @@
     "password": "schbugkiller",
     "database": "noSide",
     "host": "project-db-mysql.c1drtss9bg0n.ap-northeast-2.rds.amazonaws.com",
+    "port": "10270",
     "dialect": "mysql"
   }
 }

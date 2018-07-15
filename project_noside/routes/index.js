@@ -1,29 +1,31 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(app, passport) {
 
-router.route('/')
-      .get(function(req, res){
-        res.render('index')
-      })
-      .post(function(req, res){
-        res.render('404')
-      });
+    app.get('/signup', function(req, res){
+      res.render('./user/signup');
+    });
 
-router.route('/login')
-      .get(function(req, res){
-        res.render('user/login')
-      })
-      .post(function(req, res){
-        res.render('404')
-      });
+    app.get('/login', function(req, res){
+      res.render('./user/login');
+    });
 
-router.route('/signup')
-      .get(function(req, res){
-        res.render('user/register')
-      })
-      .post(function(req, res){
-        res.render('404')
-      });
+    app.get('/userInfo', isLoggedIn, function(req, res){
+      res.render('./user/userInfo');
+    });
 
+    app.post('/signup', passport.authenticate('local-signup', {
+            successRedirect: '/login',
+            failureRedirect: '/signup'
+        }
+    ));
 
-module.exports = router;
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect: '/userInfo',
+        failureRedirect: '/login'
+    }
+  ));
+  function isLoggedIn(req, res, next) {
+      if (req.isAuthenticated())
+          return next();
+      res.redirect('/login');
+  }
+}
