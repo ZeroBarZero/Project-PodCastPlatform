@@ -1,6 +1,8 @@
 var express = require('express');
 var expressLayouts = require('express-ejs-layouts');
 var path = require('path');
+
+var passport = require('passport');
 var session = require('express-session');
 
 var index = require('./routes/index')
