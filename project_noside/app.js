@@ -1,6 +1,7 @@
 var express = require('express');
 var expressLayouts = require('express-ejs-layouts');
 var path = require('path');
+<<<<<<< HEAD
 var config = require('./config/config.json')
 
 var redis = require('redis');
@@ -16,16 +17,22 @@ var flash = require('connect-flash');
 var app = express();
 
 require('./config/passport')(passport);
+=======
+var session = require('express-session');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
+var index = require('./routes/index')
+var signup = require('./routes/signup')
+var login  = require('./routes/login')
+>>>>>>> 588a815aa4f32e7fed869ea8126b3c25987f0327
+
+var app = express();
 
 app.use(expressLayouts);
-app.use('/css',express.static(path.join(__dirname,'views','_assets','css')));
-app.use('/fonts',express.static(path.join(__dirname,'views','_assets','fonts')));
-app.use('/img',express.static(path.join(__dirname,'views','_assets','img')));
+app.use('/css', express.static(path.join(__dirname,'views','_assets','css')));
+app.use('/fonts', express.static(path.join(__dirname,'views','_assets','fonts')));
+app.use('/img', express.static(path.join(__dirname,'views','_assets','img')));
 
+<<<<<<< HEAD
 app.use(session({
   store: new RedisStore({ host: config.redis.host, port: config.redis.port, client: client }),
   key: config.session.key,
@@ -40,12 +47,18 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+=======
+app.use('/', index);
+app.use('/signup', signup);
+app.use('login', login);
+>>>>>>> 588a815aa4f32e7fed869ea8126b3c25987f0327
 
-app.set('views', path.join(__dirname,'/views'));
-app.set('view engine','ejs');
+app.set('views', path.join(__dirname,'views'));
+app.set('view engine', 'ejs');
 app.set('layout', 'layout');
 app.set("layout extractScripts", true);
 
+<<<<<<< HEAD
 
 app.get(['/','/:page'],(req, res) => {
   var page = req.params.page;
@@ -84,6 +97,13 @@ app.post('/register', passport.authenticate('local-register', {
     }));
 
 
+=======
+app.use(session({
+  key: 'sid',
+  secret: 's3cret@',
+  resave: false,
+  saveUninitialized: true
+}));
+>>>>>>> 588a815aa4f32e7fed869ea8126b3c25987f0327
 
 app.listen(3000);
-console.log('conect 3000 port :)');

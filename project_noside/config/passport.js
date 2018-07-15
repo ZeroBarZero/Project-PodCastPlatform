@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var LocalStrategy   = require('passport-local').Strategy;
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
@@ -78,3 +79,6 @@ module.exports = function(passport) {
         })
     );
 };
+=======
+
+>>>>>>> 588a815aa4f32e7fed869ea8126b3c25987f0327
