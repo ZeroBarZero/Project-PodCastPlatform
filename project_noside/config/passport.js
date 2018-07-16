@@ -1,100 +1,60 @@
 var bCrypt = require('bcrypt-nodejs');
-
-  module.exports = function(passport,user){
-
-    var User = user;
-    var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 
-    passport.serializeUser(function(user, done) {
-            done(null, user.id);
-        });
+module.exports = (passport, user) => {
 
-    passport.deserializeUser(function(id, done) {
-        User.findById(id).then(function(user) {
-          if(user){
-            done(null, user.get());
-          }
-          else{
-            done(user.errors,null);
-          }
-        });
-    });
+  var User = user;
 
+  passport.serializeUser((user, done) => { // Strategy 성공 시 호출됨
+    done(null, user.id); // 여기의 user.id가 deserializeUser의 첫 번째 매개변수로 이동
+  });
 
-    passport.use('local-signup', new LocalStrategy(
-
-      {
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
-      },
-
-      function(req, email, password, done){
-        User.findOne({where: {username:email}})
-        .then(function(user){
-          if(user){
-            return done(null, false, {message : 'That email is already taken'} );
-          }
-          else{
-            var userPassword = bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
-            var data =
-            {
-              username:email,
-              password:userPassword
-            };
-
-
-            User.create(data).then(function(newUser,created){
-              if(!newUser){
-                return done(null, false);
-              }
-              else{
-                return done(null, newUser);
-              }
-              });
-            }
-          });
-        }
-    ));
-
-  //LOCAL SIGNIN
-  passport.use('local-login', new LocalStrategy(
-
-  {
-
-  // by default, local strategy uses username and password, we will override with email
-  usernameField : 'email',
-  passwordField : 'password',
-  passReqToCallback : true // allows us to pass back the entire request to the callback
-  },
-
-  function(req, email, password, done) {
-
-    var User = user;
-
-    User.findOne({ where : { username: email}}).then(function (user) {
-
-      if (!user) {
-        return done(null, false, { message: 'Email does not exist' });
+  passport.deserializeUser((id, done) => { // 매개변수 user는 serializeUser의 done의 인자 user를 받은 것
+    User.findById(id).then((user) => {
+      if(user){
+        done(null,user.get());
       }
-
-      if (!bCrypt.compareSync(user.password,password)) {
-
-        return done(null, false, { message: 'Incorrect password.' });
-
+      else{
+        done(user.errors, null);
       }
+    }
 
-      var userinfo = user.get();
+    )
+    done(null, user); // 여기의 user가 req.user가 됨
+  });
+  passport.use('local-signup', new LocalStrategy({ // local 전략을 세움
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true,
+  }, (req, email, password, done) => {
+    User.findOne({where:{username:email}}).then(function(user){
+      if (user) return done(null, false, {message: '존재하는 이메일입니다.'});
+      else{
+        var userPassword = bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+        var userData = {
+          username: email,
+          password: userPassword
+        };
+        User.create(userData).then((newUser, created) => {
+          if(!newUser) return done(null, false);
+          else return done(null, newUser);
+        })
+      }
+    })
+  }));
 
-      return done(null,userinfo);
-
-    }).catch(function(err){
-      console.log("Error:",err);
-      return done(null, false, { message: 'Something went wrong with your Signin' });
+  passport.use('local-login', new LocalStrategy({ // local 전략을 세움
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true,
+  }, (req, email, password, done) => {
+    User.findOne({where:{username:email}}).then((user) => {
+      if (!user) return done(null, false, { message: '존재하지 않는 아이디입니다' });
+      else{
+        if(!bCrypt.compareSync(password,user.password)) return done(null, false,{message: '비밀번호가 틀립니다 :>'});
+        else return done(null, user.get());
+      }
     });
-
-  }
-  ));
-
-  }
+  }));
+};

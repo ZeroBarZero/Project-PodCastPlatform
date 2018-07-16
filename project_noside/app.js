@@ -10,6 +10,7 @@ var app = express();
 
 app.use(expressLayouts);
 app.use('/bootstrap', express.static(path.join(__dirname,'views','_assets','bootstrap')));
+app.use('/jquery', express.static(path.join(__dirname,'views','_assets','jquery')));
 app.use('/fonts', express.static(path.join(__dirname,'views','_assets','fonts')));
 app.use('/img', express.static(path.join(__dirname,'views','_assets','img')));
 
@@ -29,10 +30,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+var models = require("./models");
 
-var models = require('./models/index');
-
-var index = require('./routes/index')(app, passport);
-require('./config/passport.js')(passport, models.user);
+require('./config/passport.js')(passport,models.user);
+var routes = require('./routes/index');
+app.use('/',routes);
 
 app.listen(3000);

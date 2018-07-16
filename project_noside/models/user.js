@@ -31,7 +31,8 @@ module.exports = function(sequelize, Sequelize) {
           type: Sequelize.BOOLEAN,
           defaultValue: false
         }
-    },{
+    },
+    {
       timestamps: true,
       paranoid: true,
       tableName: 'users'
