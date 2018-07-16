@@ -2,6 +2,8 @@ var express = require('express');
 var expressLayouts = require('express-ejs-layouts');
 var path = require('path');
 
+var config = require('./config/config.json');
+
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser')
@@ -22,11 +24,23 @@ app.set("layout extractScripts", true);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var redis = require('./config/redis.js');
+var redisStore = require('connect-redis')(session);
+
 app.use(session({
-  secret: 's3cret@',
-  resave: true,
-  saveUninitialized: true
+  store: new redisStore({
+        client: redis,
+        host: config.redis.host,
+        port: config.redis.port,
+        prefix : "session:",
+        db : 0
+    }),
+    saveUninitialized: false,
+    resave: false,
+    secret: '#s3c*rEt!',
+    cookie: { maxAge: 1000 * 60 * 60 }
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

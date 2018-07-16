@@ -1,5 +1,11 @@
 var bCrypt = require('bcrypt-nodejs');
+var config = require('./config.json');
+
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var NaverStrategy = require('passport-naver').Strategy;
+var KakaoStrategy = require('passport-kakao').Strategy;
+
 
 
 module.exports = (passport, user) => {
@@ -19,21 +25,20 @@ module.exports = (passport, user) => {
         done(user.errors, null);
       }
     }
-
     )
-    done(null, user); // 여기의 user가 req.user가 됨
   });
+
   passport.use('local-signup', new LocalStrategy({ // local 전략을 세움
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true,
-  }, (req, email, password, done) => {
-    User.findOne({where:{username:email}}).then(function(user){
-      if (user) return done(null, false, {message: '존재하는 이메일입니다.'});
+  }, (req, username, password, done) => {
+    User.findOne({where:{username:username}}).then(function(user){
+      if (user) return done(null, false, {message: '존재하는 아이디입니다.'});
       else{
         var userPassword = bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         var userData = {
-          username: email,
+          username: username,
           password: userPassword
         };
         User.create(userData).then((newUser, created) => {
@@ -45,16 +50,46 @@ module.exports = (passport, user) => {
   }));
 
   passport.use('local-login', new LocalStrategy({ // local 전략을 세움
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true,
-  }, (req, email, password, done) => {
-    User.findOne({where:{username:email}}).then((user) => {
+  }, (req, username, password, done) => {
+    User.findOne({where:{username:username, from:'local'}}).then((user) => {
       if (!user) return done(null, false, { message: '존재하지 않는 아이디입니다' });
       else{
         if(!bCrypt.compareSync(password,user.password)) return done(null, false,{message: '비밀번호가 틀립니다 :>'});
         else return done(null, user.get());
       }
     });
-  }));
-};
+  }
+));
+
+  passport.use('kakao', new KakaoStrategy({
+    clientID: config.auth.kakao.clientId,
+    callbackURL: config.auth.kakao.callbackUrl
+  },
+  function (accessToken, refreshToken, profile, done) {
+    var _profile = profile._json;
+    var username = _profile.id + "@kakao"
+    User.findOne({where:{username: username}}).then((user) => {
+      console.log(user);
+
+      if(!user){
+        var userData = {
+          username: username,
+          password: "",
+          from: "kakao"
+        }
+        User.create(userData).then((newUser, created) => {
+          if(!newUser) return done(null, false);
+          else return done(null, newUser);
+        })
+      }
+      else{
+        return done(null, user);
+      }
+
+    });
+  }
+  ));
+}
