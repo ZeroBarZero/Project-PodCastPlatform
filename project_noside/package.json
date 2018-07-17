@@ -20,6 +20,9 @@
     "express-session": "^1.15.6",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
+    "nodemailer": "^4.6.7",
+    "nodemailer-smtp-pool": "^2.8.3",
+    "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-kakao": "0.0.5",
@@ -27,7 +30,8 @@
     "passport-naver": "^1.0.6",
     "redis": "^2.8.0",
     "sequelize": "^4.38.0",
-    "store": "^2.0.12"
+    "store": "^2.0.12",
+    "xoauth2": "^1.2.0"
   },
   "devDependencies": {},
   "description": ""

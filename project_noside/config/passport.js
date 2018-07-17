@@ -64,6 +64,7 @@ module.exports = (passport, user) => {
   }
 ));
 
+
   passport.use('kakao', new KakaoStrategy({
     clientID: config.auth.kakao.clientId,
     callbackURL: config.auth.kakao.callbackUrl
