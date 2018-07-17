@@ -116,4 +116,33 @@ router.get('/login/kakao/callback',
   })
 );
 
+router.get('/login/naver',
+  passport.authenticate('naver', {
+    successRedirect: '/userInfo',
+    failureRedirect: '/login'
+  })
+);
+
+router.get('/login/naver/callback',
+  passport.authenticate('naver', {
+    successRedirect: '/userInfo',
+    failureRedirect: '/login'
+  })
+);
+
+router.get('/login/google',
+  passport.authenticate('google', {
+    successRedirect: '/userInfo',
+    failureRedirect: '/login',
+    scope:'https://www.googleapis.com/auth/plus.login'
+  })
+);
+
+router.get('/login/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/userInfo',
+    failureRedirect: '/login'
+  })
+);
+
 module.exports = router;

@@ -5,7 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var NaverStrategy = require('passport-naver').Strategy;
 var KakaoStrategy = require('passport-kakao').Strategy;
-
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
 module.exports = (passport, user) => {
@@ -73,8 +73,6 @@ module.exports = (passport, user) => {
     var _profile = profile._json;
     var username = _profile.id + "@kakao"
     User.findOne({where:{username: username}}).then((user) => {
-      console.log(user);
-
       if(!user){
         var userData = {
           username: username,
@@ -93,4 +91,62 @@ module.exports = (passport, user) => {
     });
   }
   ));
+
+  passport.use('naver', new NaverStrategy({
+    clientID: config.auth.naver.clientId,
+    clientSecret: config.auth.naver.clientSecret,
+    callbackURL: config.auth.naver.callbackUrl
+  },
+  function (accessToken, refreshToken, profile, done) {
+    var _profile = profile._json;
+    var username = _profile.id + "@naver"
+    User.findOne({where:{username: username}}).then((user) => {
+      if(!user){
+        var userData = {
+          username: username,
+          password: "",
+          from: "naver"
+        }
+        User.create(userData).then((newUser, created) => {
+          if(!newUser) return done(null, false);
+          else return done(null, newUser);
+        })
+      }
+      else{
+        return done(null, user);
+      }
+
+    });
+  }
+  ));
+
+  passport.use('google', new GoogleStrategy({
+    clientID: config.auth.google.clientId,
+    clientSecret: config.auth.google.clientSecret,
+    callbackURL: config.auth.google.callbackUrl,
+  },
+  function (accessToken, refreshToken, profile, done) {
+    var _profile = profile._json;
+    console.log(_profile)
+    var username = _profile.id + "@google"
+    User.findOne({where:{username: username}}).then((user) => {
+      if(!user){
+        var userData = {
+          username: username,
+          password: "",
+          from: "google"
+        }
+        User.create(userData).then((newUser, created) => {
+          if(!newUser) return done(null, false);
+          else return done(null, newUser);
+        })
+      }
+      else{
+        return done(null, user);
+      }
+
+    });
+  }
+  ));
+
 }
