@@ -3,6 +3,9 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var models = require("../models");
 var smtpPool=require('nodemailer-smtp-pool');
+
+var viewController = require('../controllers/viewController');
+
 var router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
@@ -17,23 +20,17 @@ var isNotAuthenticated = function (req, res, next) {
   res.redirect('/');
 };
 
-router.get('/',function(req,res){
-  res.render('index');
-});
+router.get('/', viewController.indexView);
 
 
-router.get('/signup', isNotAuthenticated,function(req,res){
-  res.render('./user/signup');
-});
+router.get('/signup', isNotAuthenticated,viewController.signupView);
 router.post('/signup', passport.authenticate('local-signup', {
             successRedirect: '/login',
             failureRedirect: '/signup'
         }));
 
 
-router.get('/login', isNotAuthenticated,function(req,res){
-  res.render('./user/login');
-});
+router.get('/login', isNotAuthenticated, viewController.loginView);
 router.post('/login',passport.authenticate('local-login', {
             successRedirect: '/userInfo',
             failureRedirect: '/404'
@@ -45,11 +42,7 @@ router.get('/logout', function(req, res){
   })
 });
 
-router.get('/userInfo',isAuthenticated,function(req,res){
-  res.render('./user/userInfo', {
-    username: req.user.username
-  });
-});
+router.get('/userInfo',isAuthenticated,viewController.userInfoView);
 router.get('/emailVerification', isAuthenticated,function(req, res){
   res.render('emailVerification');
 });
