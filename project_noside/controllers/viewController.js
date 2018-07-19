@@ -15,3 +15,7 @@ exports.userInfoView = function(req, res) {
     username: req.user.username
   });
 };
+
+exports.pageNotFoundView = function(req, res) {
+  res.render('./404');
+};
