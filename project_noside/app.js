@@ -11,11 +11,11 @@ var bodyParser = require('body-parser')
 var app = express();
 
 app.use(expressLayouts);
-app.use('/bootstrap', express.static(path.join(__dirname,'views','_assets','bootstrap')));
-app.use('/jquery', express.static(path.join(__dirname,'views','_assets','jquery')));
-app.use('/fonts', express.static(path.join(__dirname,'views','_assets','fonts')));
+app.use('/vendor', express.static(path.join(__dirname,'views','_assets','vendor')));
+app.use('/css', express.static(path.join(__dirname,'views','_assets','css')));
+app.use('/js', express.static(path.join(__dirname,'views','_assets','js')));
 app.use('/img', express.static(path.join(__dirname,'views','_assets','img')));
-app.use('/custom', express.static(path.join(__dirname,'views','custom')));
+;
 
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'ejs');

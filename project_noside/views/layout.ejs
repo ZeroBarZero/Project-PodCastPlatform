@@ -3,16 +3,27 @@
 <head>
   <% include ./_partials/head %>
 </head>
-<body>
-    <header>
-        <% include ./_partials/header %>
-    </header>
-    <div id="page-top">
+<body  id="page-top">
+    <div>
+        <% include ./_partials/nav %>
+    </div>
+    <div>
         <%- body %>
     </div>
-    <footer>
-        푸터영역
-    </footer>
-    <%- script %>
+    <div>
+        <%- include ./_partials/footer %>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
+      <%- script %>
 </body>
 </html>
