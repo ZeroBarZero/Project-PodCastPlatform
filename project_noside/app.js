@@ -15,6 +15,7 @@ app.use('/bootstrap', express.static(path.join(__dirname,'views','_assets','boot
 app.use('/jquery', express.static(path.join(__dirname,'views','_assets','jquery')));
 app.use('/fonts', express.static(path.join(__dirname,'views','_assets','fonts')));
 app.use('/img', express.static(path.join(__dirname,'views','_assets','img')));
+app.use('/custom', express.static(path.join(__dirname,'views','custom')));
 
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
@@ -24,17 +25,8 @@ app.set("layout extractScripts", true);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var redis = require('./config/redis.js');
-var redisStore = require('connect-redis')(session);
 
 app.use(session({
-  store: new redisStore({
-        client: redis,
-        host: config.redis.host,
-        port: config.redis.port,
-        prefix : "session:",
-        db : 0
-    }),
     saveUninitialized: false,
     resave: false,
     secret: '#s3c*rEt!',
