@@ -1,48 +1,34 @@
-<div>
-    <ul>
-        <li class="infomenu" id="user">
-            <button>프로필</button>
-            <ul class="hide">
-                <li>email : <%=username %></li>
-            </ul>
-        </li>
+<div class="login-wrap">
+  <div class="login-form">
+      <div class="group">
+        <label class="label">프로필</label>
+          <p> email : <%=username %> </p>
+      </div>
 
-        <li class="infomenu" id="chpwd">
-            <button>비밀번호</button>
-            <ul class="hide">
-                <li>이전 비밀번호</li>
-                  <input type="password" class="form-control" name="password">
-                <li>새 비밀번호</li>
-                  <input type="password" class="form-control" name="password">
-                <li>비밀번호 확인</li>
-                  <input type="password" class="form-control" name="password">
-                <button type="submit" class="btn btn-warning btn-lg">변경사항 저장</button>
-            </ul>
-        </li>
+      <div class="hr"></div>
 
-        <li class="infomenu" id="leave">
-            <button>계정삭제</button>
-            <ul class="hide">
-                <li>password 입력</li>
-                  <input type="password" class="form-control" name="password">
-            </ul>
-        </li>
-    </ul>
+      <div class="group">
+        <label for="chpwd" class="label">이전 비밀번호</label>
+        <input class="chpwd" type="password" class="input" data-type="password">
+        <label for="chpwd" class="label">새 비밀번호</label>
+        <input class="chpwd" type="password" class="input" data-type="password">
+        <label for="chpwd" class="label">비밀번호 확인</label>
+        <input class="chpwd" type="password" class="input" data-type="password">
+      </div>
+
+      <div class="group">
+        <input type="submit" class="button"  action="/signup" value="Sign In">
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="group">
+        <label class="label">계정 삭제</label>
+        <p>password 입력</p> <input type="password" class="form-control" name="password">
+      </div>
+
+      <div class="group">
+        <input type="submit" class="button"  action="/signup" value="Sign In">
+      </div>
+    <div>
 </div>
-
-<script>
-    $(document).ready(function(){
-        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
-        $(".infomenu>button").click(function(){
-            var submenu = $(this).next("ul");
-
-            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-            if( submenu.is(":visible") ){
-                submenu.slideUp();
-            }else{
-                submenu.slideDown();
-            }
-        });
-         $(".menu:eq(0)>a").click();
-    });
-</script>
