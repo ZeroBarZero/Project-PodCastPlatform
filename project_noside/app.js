@@ -25,8 +25,17 @@ app.set("layout extractScripts", true);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var redis = require('./config/redis.js');
+var redisStore = require('connect-redis')(session);
 
 app.use(session({
+  store: new redisStore({
+        client: redis,
+        host: config.redis.host,
+        port: config.redis.port,
+        prefix : "session:",
+        db : 0
+    }),
     saveUninitialized: false,
     resave: false,
     secret: '#s3c*rEt!',
