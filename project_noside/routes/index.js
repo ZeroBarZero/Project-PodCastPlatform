@@ -5,22 +5,11 @@ var authController = require('../controllers/authController')
 
 var router = express.Router();
 
-var isAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated())
-    return next();
-  res.redirect('/login');
-};
-
-var isNotAuthenticated = function (req, res, next) {
-  if (!req.isAuthenticated())
-    return next();
-  res.redirect('/');
-};
 
 router.get('/', viewController.indexView);
 
 
-router.get('/signup', isNotAuthenticated,viewController.signupView);
+router.get('/signup', authController.isNotAuthenticated, viewController.signupView);
 
 router.post('/signup', passport.authenticate('local-signup', {
             successRedirect: '/login',
@@ -28,7 +17,8 @@ router.post('/signup', passport.authenticate('local-signup', {
         }));
 
 
-router.get('/login', isNotAuthenticated, viewController.loginView);
+router.get('/login', authController.isNotAuthenticated, viewController.loginView);
+
 router.post('/login',passport.authenticate('local-login', {
             successRedirect: '/userInfo',
             failureRedirect: '/404'
@@ -40,16 +30,19 @@ router.get('/logout', function(req, res){
   })
 });
 
-router.get('/userInfo',isAuthenticated,viewController.userInfoView);
-router.get('/emailVerification', isAuthenticated,function(req, res){
+router.get('/userInfo', authController.isAuthenticated,viewController.userInfoView);
+
+router.get('/emailVerification',  authController.isAuthenticated, function(req, res){
   res.render('emailVerification');
 });
-router.post('/emailVerification', isAuthenticated, authController.emailVerification);
-router.get('/auth/emailVerification/', isAuthenticated, authController.emailTokenVerification);
+router.post('/emailVerification',  authController.isAuthenticated, authController.emailVerification);
+
+router.get('/auth/emailVerification/', authController.isAuthenticated, authController.emailTokenVerification);
 
 router.get('/404', viewController.pageNotFoundView);
 
-router.get('/login/kakao',
+
+router.get('/login/kakao/',
   passport.authenticate('kakao', {
     successRedirect: '/userInfo',
     failureRedirect: '/login'
@@ -63,7 +56,7 @@ router.get('/login/kakao/callback',
   })
 );
 
-router.get('/login/naver',
+router.get('/login/naver/',
   passport.authenticate('naver', {
     successRedirect: '/userInfo',
     failureRedirect: '/login'
@@ -77,7 +70,7 @@ router.get('/login/naver/callback',
   })
 );
 
-router.get('/login/google',
+router.get('/login/google/',
   passport.authenticate('google', {
     successRedirect: '/userInfo',
     failureRedirect: '/login',

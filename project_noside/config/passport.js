@@ -144,7 +144,6 @@ module.exports = (passport, user) => {
       else{
         return done(null, user);
       }
-
     });
   }
   ));
