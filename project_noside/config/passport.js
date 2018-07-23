@@ -7,6 +7,14 @@ var NaverStrategy = require('passport-naver').Strategy;
 var KakaoStrategy = require('passport-kakao').Strategy;
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
+var jwt = require('jsonwebtoken');
+var JwtStrategy = require('passport-jwt').Strategy;
+
+var cookieExtractor = function(req) {
+  var token = null;
+  if (req && req.cookies) token = req.cookies['jwt'];
+  return token;
+}
 
 module.exports = (passport, user) => {
 
@@ -58,7 +66,9 @@ module.exports = (passport, user) => {
       if (!user) return done(null, false, { message: '존재하지 않는 아이디입니다' });
       else{
         if(!bCrypt.compareSync(password,user.password)) return done(null, false,{message: '비밀번호가 틀립니다 :>'});
-        else return done(null, user.get());
+        else {
+          return done(null, user.get());
+        }
       }
     });
   }
@@ -144,8 +154,19 @@ module.exports = (passport, user) => {
       else{
         return done(null, user);
       }
+
     });
   }
   ));
+
+  passport.use('jwt', new JwtStrategy({
+    jwtFromRequest:cookieExtractor,
+    secretOrKey: 'c#NlD%jqG#krHTl!vek'
+  }, function(payload, done){
+    User.findOne({where:{username: payload.id}}).then((user) => {
+      if(user) done(null, user);
+      else done(null, false);
+    });
+  }));
 
 }

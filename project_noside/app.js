@@ -50,5 +50,4 @@ var models = require("./models");
 require('./config/passport.js')(passport,models.user);
 var routes = require('./routes/index');
 app.use('/',routes);
-
 app.listen(3000);

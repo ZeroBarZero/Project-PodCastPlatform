@@ -1,3 +1,8 @@
+var models = ('../models');
+var podCastList = models.podCast;
+var podCastItem = models.podCastItem;
+
+
 exports.indexView = function(req, res) {
   res.render('index');
 };
@@ -18,4 +23,10 @@ exports.userInfoView = function(req, res) {
 
 exports.pageNotFoundView = function(req, res) {
   res.render('./404');
+};
+
+exports.podCastPlayerView = function(req, res) {
+  // default : 그냥 팟캐스트 목록
+  podcastItem.findAll({include : [podcastList]})
+
 };
