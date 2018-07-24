@@ -27,6 +27,6 @@ exports.pageNotFoundView = function(req, res) {
 
 exports.podCastPlayerView = function(req, res) {
   // default : 그냥 팟캐스트 목록
-  podcastItem.findAll({include : [podcastList]})
+  res.render('./podCastList')
 
 };
