@@ -13,7 +13,7 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             allowNull: false,
             notEmpty: true
-        }
+        },
         author: {
             type: Sequelize.STRING,
             allowNull: false,
