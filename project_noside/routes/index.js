@@ -32,6 +32,8 @@ router.get('/logout', function(req, res){
 
 router.get('/userInfo', authController.isAuthenticated,viewController.userInfoView);
 router.get('/podCast', authController.isAuthenticated,viewController.podCastPlayerView);
+router.get('/podcastItem', authController.isAuthenticated,viewController.podcastItemView);
+
 
 router.get('/emailVerification',  authController.isAuthenticated, function(req, res){
   res.render('emailVerification');

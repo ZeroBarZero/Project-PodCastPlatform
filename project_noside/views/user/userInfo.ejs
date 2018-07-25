@@ -1,11 +1,9 @@
 <div class="login-wrap">
-  <div class="login-form">
+  <form class="login-form">
       <div class="group">
         <label class="label">프로필</label>
           <p> email : <%=username %> </p>
       </div>
-
-      <div class="hr"></div>
 
       <div class="group">
         <label for="chpwd" class="label">이전 비밀번호</label>
@@ -17,18 +15,23 @@
       </div>
 
       <div class="group">
-        <input type="submit" class="button"  action="/signup" value="Sign In">
+        <input type="submit" class="button"  action="/signup" value="submit">
       </div>
-
-      <div class="hr"></div>
 
       <div class="group">
         <label class="label">계정 삭제</label>
-        <p>password 입력</p> <input type="password" class="form-control" name="password">
+        <p>password : </p> <input type="password" class="form-control" name="password">
       </div>
 
       <div class="group">
-        <input type="submit" class="button"  action="/signup" value="Sign In">
+        <input type="submit" class="button"  action="/signup" value="submit">
       </div>
-    <div>
+
+      <div class="group">
+        <label for="auth" class="label">이메일 인증</label>
+        <input class="auth" type="email" class="input" name="email">
+        <input type="submit" class="button"  action="/emailVerification" value="submit">
+      </div>
+
+    </form>
 </div>

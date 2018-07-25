@@ -7,6 +7,10 @@ exports.indexView = function(req, res) {
   res.render('index');
 };
 
+exports.podcastItemView = function(req, res) {
+  res.render('./podCastItem');
+};
+
 exports.signupView = function(req, res) {
   res.render('./user/signup');
 };
