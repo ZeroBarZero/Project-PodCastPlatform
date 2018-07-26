@@ -10,9 +10,18 @@ module.exports = function(sequelize, Sequelize) {
         },
         part: {
             primaryKey: true,
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
             notEmpty: true
+        },
+        title: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          notEmpty: true
+        },
+        description: {
+          type: Sequelize.STRING,
+          allowNull: false,
         },
         url: {
           type: Sequelize.STRING,

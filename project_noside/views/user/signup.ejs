@@ -1,19 +1,32 @@
 <!-- 로그인 페이지 -->
 <!DOCTYPE html>
 <div>
-  <h3>회원가입</h3>
-  <form action="/signup" method="post">
+  <h3>팟캐스트 추가</h3>
+  <form action="/addPodCast" method="post">
       <div class="form-group">
-          <label>Email</label>
-          <input type="text" class="form-control" name="username">
+          <label>title</label>
+          <input type="text" class="form-control" name="title">
       </div>
       <div class="form-group">
-          <label>Password</label>
-          <input type="password" class="form-control" name="password">
+          <label>author</label>
+          <input type="password" class="form-control" name="author">
+      </div>
+      <div class="form-group">
+          <label>description</label>
+          <input type="password" class="form-control" name="desc">
       </div>
       <button type="submit" class="btn btn-warning btn-lg">확인</button>
   </form>
-
-  <p>계정이 없다면? <a href="/register">회원가입</a></p>
-  <p>Or go <a href="/">home</a>.</p>
+  <h3>팟캐스트 항목 추가</h3>
+  <form action="/addPodCastItem" method="post">
+      <div class="form-group">
+          <label>title</label>
+          <input type="text" class="form-control" name="username">
+      </div>
+      <div class="form-group">
+          <label>description</label>
+          <input type="password" class="form-control" name="desc">
+      </div>
+      <button type="submit" class="btn btn-warning btn-lg">확인</button>
+  </form>
 </div>

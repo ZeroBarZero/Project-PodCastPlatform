@@ -2,36 +2,32 @@
   <form class="login-form">
       <div class="group">
         <label class="label">프로필</label>
-          <p> email : <%=username %> </p>
+          <p> <%=username %> 님, 안녕하세요. :) </p>
       </div>
 
-      <div class="group">
-        <label for="chpwd" class="label">이전 비밀번호</label>
-        <input class="chpwd" type="password" class="input" data-type="password">
-        <label for="chpwd" class="label">새 비밀번호</label>
-        <input class="chpwd" type="password" class="input" data-type="password">
-        <label for="chpwd" class="label">비밀번호 확인</label>
-        <input class="chpwd" type="password" class="input" data-type="password">
-      </div>
+      <form action="/changePassword" method="post">
+          <div class="form-group">
+              <label>이전 비밀번호</label>
+              <input type="text" class="form-control" name="prevPassword">
+          </div>
+          <div class="form-group">
+              <label>새 비밀번호</label>
+              <input type="password" class="form-control" name="newPassword">
+          </div>
+          <div class="form-group">
+              <label>새 비밀번호 확인</label>
+              <input type="password" class="form-control" name="newPasswordCheck">
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">확인</button>
+      </form>
 
-      <div class="group">
-        <input type="submit" class="button"  action="/signup" value="submit">
-      </div>
-
-      <div class="group">
-        <label class="label">계정 삭제</label>
-        <p>password : </p> <input type="password" class="form-control" name="password">
-      </div>
-
-      <div class="group">
-        <input type="submit" class="button"  action="/signup" value="submit">
-      </div>
-
-      <div class="group">
-        <label for="auth" class="label">이메일 인증</label>
-        <input class="auth" type="email" class="input" name="email">
-        <input type="submit" class="button"  action="/emailVerification" value="submit">
-      </div>
+      <form action="/emailVerification" method="post">
+          <div class="form-group">
+              <label>이메일</label>
+              <input type="email" class="form-control" name="email">
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">인증</button>
+      </form>
 
     </form>
 </div>

@@ -1,1 +1,44 @@
 <!-- 관리자 페이지 -->
+<!DOCTYPE html>
+<div>
+  <h3>팟캐스트 추가</h3>
+  <form action="/addPodCast" method="post">
+      <div class="form-group">
+          <label>title</label>
+          <input type="text" class="form-control" name="title">
+      </div>
+      <div class="form-group">
+          <label>author</label>
+          <input type="text" class="form-control" name="author">
+      </div>
+      <div class="form-group">
+          <label>description</label>
+          <input type="text" class="form-control" name="desc">
+      </div>
+      <button type="submit" class="btn btn-warning btn-lg">확인</button>
+  </form>
+  <h3>팟캐스트 항목 추가</h3>
+  <form action="/addPodCastItem" method="post">
+    <div class="form-group">
+        <label>podCast</label>
+        <input type="text" class="form-control" name="podCast">
+    </div>
+      <div class="form-group">
+          <label>title</label>
+          <input type="text" class="form-control" name="title">
+      </div>
+      <div class="form-group">
+          <label>몇 화임?</label>
+          <input type="text" class="form-control" name="part">
+      </div>
+      <div class="form-group">
+          <label>description</label>
+          <input type="text" class="form-control" name="desc">
+      </div>
+      <div class="form-group">
+          <label>url</label>
+          <input type="text" class="form-control" name="url">
+      </div>
+      <button type="submit" class="btn btn-warning btn-lg">확인</button>
+  </form>
+</div>
