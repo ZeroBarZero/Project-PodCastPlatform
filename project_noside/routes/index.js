@@ -3,6 +3,18 @@ var passport = require('passport');
 var viewController = require('../controllers/viewController');
 var authController = require('../controllers/authController');
 var podController = require('../controllers/podController');
+var randomstring = require('randomstring');
+
+var multer = require("multer");
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/podcast/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, randomstring.generate(16)+".mp3");
+  }
+})
+var upload = multer({storage: storage});
 
 var router = express.Router();
 
@@ -92,6 +104,8 @@ router.get('/login/google/callback',
 router.get('/podcastList', viewController.podcastListView);
 router.get('/admin/podList', viewController.adminPodListView);
 router.get('/admin/podCastItem/:id', viewController.adminPodItemView);
-router.get('/podcast/:id', viewController.podcastItemView)
+router.post('/admin/addPodcast', podController.addPodCast);
+router.post('/admin/addPodcastItem', upload.single('userfile'), podController.addPodCastItem);
+router.get('/podcast/:id', viewController.podcastItemView);
 router.get('/audiotest', viewController.audiotestView);
 module.exports = router;
