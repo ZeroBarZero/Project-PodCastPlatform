@@ -38,7 +38,7 @@ router.get('/podcastItem', authController.isAuthenticated,viewController.podcast
 router.get('/emailVerification',  authController.isAuthenticated, function(req, res){
   res.render('emailVerification');
 });
-router.post('/emailVerification',  authController.isAuthenticated, authController.emailVerification);
+router.post('/emailVerification',  authController.isAuthenticated, authController.emailVerification, viewController.userInfoView);
 
 router.get('/auth/emailVerification/', authController.isAuthenticated, authController.emailTokenVerification);
 router.get('/admin', authController.isAuthenticated, viewController.adminView);

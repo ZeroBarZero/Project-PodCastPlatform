@@ -31,7 +31,8 @@ exports.userInfoView = function(req, res) {
 
   res.render('./user/userInfo', {
     username: _username,
-    isAuthenticated: req.isAuthenticated()
+    isAuthenticated: req.isAuthenticated(),
+    message:req.flash('message')
   });
 };
 

@@ -3,10 +3,10 @@ var expressLayouts = require('express-ejs-layouts');
 var path = require('path');
 
 var config = require('./config/config.json');
-
+var flash = require('connect-flash');
 var passport = require('passport');
 var session = require('express-session');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 var app = express();
 
@@ -44,7 +44,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 var models = require("./models");
 
 require('./config/passport.js')(passport,models.user);

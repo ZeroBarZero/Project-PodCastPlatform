@@ -2,6 +2,11 @@
   <div class="usrinfo-html">
   <form class="login-form">
     <div class="usrinfo-wrap">
+      <% if(message.length > 0){ %>
+      <div class="group">
+          <p class="greet"> <%= message %> </p>
+      </div>
+      <% } %>
       <div class="group">
           <p class="greet"> <%=username %> 님, 안녕하세요 </p>
       </div>
