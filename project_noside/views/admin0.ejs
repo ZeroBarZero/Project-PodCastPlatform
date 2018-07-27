@@ -1,0 +1,19 @@
+<!-- 관리자 페이지 -->
+<div>
+  <table>
+    <tr>
+        <th>ID</th>
+        <th>제목</th>
+        <th>에디터</th>
+        <th>설명</th>
+    </tr>
+    <% for (let post of posts) { %>
+        <tr>
+            <td><%= post.id %></td>
+            <td><%= post.title %> </td>
+            <td><%= post.description %> </td>
+        </tr>
+
+    <% }; %>
+</table>
+</div>

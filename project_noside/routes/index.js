@@ -32,7 +32,6 @@ router.get('/logout', function(req, res){
 });
 
 router.get('/userInfo', authController.isAuthenticated,viewController.userInfoView);
-router.get('/podCast', authController.isAuthenticated,viewController.podCastPlayerView);
 router.get('/podcastItem', authController.isAuthenticated,viewController.podcastItemView);
 
 
@@ -65,6 +64,7 @@ router.get('/login/naver/',
     failureRedirect: '/login'
   })
 );
+
 router.get('/login/naver/callback',
   passport.authenticate('naver', {
     successRedirect: '/podcastList',
@@ -79,6 +79,7 @@ router.get('/login/google/',
     scope:'https://www.googleapis.com/auth/plus.login'
   })
 );
+
 router.get('/login/google/callback',
   passport.authenticate('google', {
     successRedirect: '/podcastList',
@@ -86,6 +87,8 @@ router.get('/login/google/callback',
   })
 );
 
+router.get('/podcastList', viewController.podcastListView);
+router.get('/adminTest', viewController.adminTestView);
 router.post('/addPodCast', podController.addPodCast);
 router.post('/addPodCastItem', podController.addPodCastItem);
 module.exports = router;

@@ -1,6 +1,5 @@
-var models = ('../models');
-var podCastList = models.podCast;
-var podCastItem = models.podCastItem;
+var models = require('../models');
+var PodCast = models.podCast;
 
 exports.indexView = function(req, res) {
   res.render('index', {
@@ -42,12 +41,11 @@ exports.pageNotFoundView = function(req, res) {
   });
 };
 
-exports.podCastPlayerView = function(req, res) {
+exports.podcastListView = function(req, res) {
   // default : 그냥 팟캐스트 목록
-  res.render('./podCastList',{
+  res.render('./podcastList',{
     isAuthenticated: req.isAuthenticated()
   })
-
 };
 
 exports.adminView = function(req, res) {
@@ -55,5 +53,15 @@ exports.adminView = function(req, res) {
   res.render('./admin',{
     isAuthenticated: req.isAuthenticated()
   })
+};
+
+exports.adminTestView = function(req, res,next) {
+  var _data = [];
+  PodCast.findAll().then((data) => {
+    res.render("./admin0",{
+      posts: data,
+      isAuthenticated: req.isAuthenticated()
+    })
+  });
 
 };

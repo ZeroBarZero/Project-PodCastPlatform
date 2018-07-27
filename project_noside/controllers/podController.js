@@ -1,7 +1,8 @@
 var models = require("../models");
+var PodCastItem = models.podCastItem;
+var PodCast = models.podCast;
 
 exports.addPodCast = function(req, res, next) {
-  var PodCast = models.podCast;
   var podcastData = {
     title:req.body.title,
     author:req.body.author,
@@ -10,14 +11,13 @@ exports.addPodCast = function(req, res, next) {
 
   PodCast.create(podcastData).then((newPodcast, created) => {
     if(!newPodcast) console.log("생성되지 않았습니다.");
-    else console.log(created);
+    else console.log('생성됨');
   })
   res.redirect('./admin');
 };
 
 exports.addPodCastItem = function(req, res, next) {
-  var PodCastItem = models.podCastItem;
-  var PodCast = models.podCast;
+
   PodCast.findOne({where:{title:req.body.podCast}}).then((podCast)=>{
     if(podCast){
       var itemData ={
@@ -29,7 +29,7 @@ exports.addPodCastItem = function(req, res, next) {
       }
       PodCastItem.create(itemData).then((newItem, created) => {
         if(!newItem) console.log("생성되지 않았습니다.");
-        else console.log(newItem);
+        else console.log("생성됨");
       })
     }
     else return false;
