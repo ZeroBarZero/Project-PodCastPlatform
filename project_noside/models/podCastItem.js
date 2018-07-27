@@ -25,8 +25,7 @@ module.exports = function(sequelize, Sequelize) {
         },
         url: {
           type: Sequelize.STRING,
-          allowNull: false,
-          notEmpty: true
+          allowNull: false
         }
     },
     {
