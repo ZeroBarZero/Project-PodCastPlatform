@@ -1,33 +1,39 @@
 <div class="login-wrap">
+  <div class="usrinfo-html">
   <form class="login-form">
+    <div class="usrinfo-wrap">
       <div class="group">
-        <label class="label">프로필</label>
-          <p> <%=username %> 님, 안녕하세요. :) </p>
+          <p class="greet"> <%=username %> 님, 안녕하세요 </p>
       </div>
 
       <form action="/changePassword" method="post">
-          <div class="form-group">
+        <p class="group-label">비밀번호 변경</p>
+          <div class="group">
               <label>이전 비밀번호</label>
               <input type="text" class="form-control" name="prevPassword">
           </div>
-          <div class="form-group">
+          <div class="group">
               <label>새 비밀번호</label>
               <input type="password" class="form-control" name="newPassword">
           </div>
-          <div class="form-group">
+          <div class="group">
               <label>새 비밀번호 확인</label>
               <input type="password" class="form-control" name="newPasswordCheck">
+              <button type="submit" class="button">확인</button>
           </div>
-          <button type="submit" class="btn btn-warning btn-lg">확인</button>
+
       </form>
 
       <form action="/emailVerification" method="post">
-          <div class="form-group">
+        <p class="group-label">이메일 인증</p>
+          <div class="group">
               <label>이메일</label>
               <input type="email" class="form-control" name="email">
+              <button type="submit" class="button">인증</button>
           </div>
-          <button type="submit" class="btn btn-warning btn-lg">인증</button>
-      </form>
 
+      </form>
+    </div>
     </form>
+  </div>
 </div>

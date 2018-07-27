@@ -305,7 +305,7 @@
 @media all {
   .audio-wrapper .audio-basic-player,
   .audio-wrapper.hideVolumeControl .amplitude-mute {
-    display: none
+    /*display: none*/
   }
   .audio-wrapper {
     border: 2px solid #FFF;
@@ -2375,7 +2375,7 @@
     position: absolute;
     top: 7px;
     left: 7px;
-    content: url(/magazine/-cb-/1529172667990/graphics/podcast-episode/Download_off.svg)
+    /*content: url(/magazine/-cb-/1529172667990/graphics/podcast-episode/Download_off.svg)*/
   }
   .podcast-episodes .download-episode:focus,
   .podcast-episodes .download-episode:hover {
@@ -2383,7 +2383,7 @@
   }
   .podcast-episodes .download-episode:focus::before,
   .podcast-episodes .download-episode:hover::before {
-    content: url(/magazine/-cb-/1529172667990/graphics/podcast-episode/Download_on.svg)
+    /*content: url(/magazine/-cb-/1529172667990/graphics/podcast-episode/Download_on.svg)*/
   }
   .podcast-episodes.golden-theme .heading span,
   .podcast-episodes.golden-theme h3 {
@@ -2505,14 +2505,14 @@
     font-size: 18px;
     line-height: 22px;
     border: 1px solid #FFF;
-    padding: 12px 15px 10px 58px;
+    padding: 12px 15px 10px 15px;
     margin-bottom: 35px
   }
   .podcast-episodes .inner-section .heading::before {
     position: absolute;
     top: 0;
     left: 0;
-    content: url(/magazine/-cb-/1529172667993/graphics/podcast-episode/headphones_icon.svg);
+    /*content: url(/magazine/-cb-/1529172667993/graphics/podcast-episode/headphones_icon.svg);*/
     background-color: #FFF;
     padding: 7px 9px 3px
   }
@@ -2567,7 +2567,7 @@
     margin-bottom: -5px
   }
   .podcast-episodes.golden-theme .inner-section .heading::before {
-    content: url(/magazine/-cb-/1529172667994/graphics/podcast-episode/headphones_icon_yellow.svg)
+    /*content: url(/magazine/-cb-/1529172667994/graphics/podcast-episode/headphones_icon_yellow.svg)*/
   }
   @keyframes jitterbug-into-my-heart {
     0% {
