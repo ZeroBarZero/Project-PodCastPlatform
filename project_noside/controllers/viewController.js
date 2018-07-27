@@ -1,6 +1,6 @@
 var models = require('../models');
 var PodCast = models.podCast;
-
+var PodCastItem = models.podCastItem;
 exports.indexView = function(req, res) {
   res.render('index', {
     isAuthenticated: req.isAuthenticated()
@@ -55,13 +55,21 @@ exports.adminView = function(req, res) {
   })
 };
 
-exports.adminTestView = function(req, res,next) {
-  var _data = [];
+exports.adminTestView = function(req, res) {
   PodCast.findAll().then((data) => {
     res.render("./admin0",{
       posts: data,
       isAuthenticated: req.isAuthenticated()
     })
   });
+};
 
+exports.adminPodItemView = function(req, res) {
+  var id = req.params.id;
+  PodCastItem.findAll({where:{id:id}}).then((data) => {
+    res.render("./admin1",{
+      posts: data,
+      isAuthenticated: req.isAuthenticated()
+    })
+  });
 };

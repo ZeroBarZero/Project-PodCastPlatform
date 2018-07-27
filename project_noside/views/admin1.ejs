@@ -3,15 +3,18 @@
   <table>
     <tr>
         <th>ID</th>
+        <th>화</th>
         <th>제목</th>
-        <th>에디터</th>
         <th>설명</th>
+        <th>url</th>
     </tr>
     <% for (let post of posts) { %>
         <tr>
-            <td><a href="/admin/<%= post.id %>"><%= post.id %></a></td>
+            <td><%= post.id %></td>
+            <td><%= post.part %></td>
             <td><%= post.title %> </td>
             <td><%= post.description %> </td>
+            <td><%= post.url %> </td>
         </tr>
     <% }; %>
 </table>
