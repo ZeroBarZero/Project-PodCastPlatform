@@ -92,6 +92,7 @@ router.get('/adminTest', viewController.adminTestView);
 router.post('/addPodCast', podController.addPodCast);
 router.post('/addPodCastItem', podController.addPodCastItem);
 
-router.get('/admin/:id', viewController.adminPodItemView)
+router.get('/admin/:id', viewController.adminPodItemView);
+router.get('/podcast/:id', viewController.podcastItemView)
 
 module.exports = router;
