@@ -29,7 +29,12 @@ exports.addPodCastItem = function(req, res, next) {
       }
       PodCastItem.create(itemData).then((newItem, created) => {
         if(!newItem) console.log("생성되지 않았습니다.");
-        else console.log("생성됨");
+        else{
+          console.log(newItem);
+          PodCast.update({updatedAt:newItem.updatedAt},{where:{id:newItem.id}}).then((result) => {
+
+          });
+        }
       })
     }
     else return false;

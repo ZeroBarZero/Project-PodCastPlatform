@@ -55,9 +55,9 @@ exports.adminView = function(req, res) {
   })
 };
 
-exports.adminTestView = function(req, res) {
+exports.adminPodListView = function(req, res) {
   PodCast.findAll().then((data) => {
-    res.render("./admin0",{
+    res.render("./admin-podCastList",{
       posts: data,
       isAuthenticated: req.isAuthenticated()
     })
@@ -67,7 +67,8 @@ exports.adminTestView = function(req, res) {
 exports.adminPodItemView = function(req, res) {
   var id = req.params.id;
   PodCastItem.findAll({where:{id:id}}).then((data) => {
-    res.render("./admin1",{
+    console.log(data);
+    res.render("./admin-podCastItem",{
       posts: data,
       isAuthenticated: req.isAuthenticated()
     })

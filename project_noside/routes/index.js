@@ -88,11 +88,8 @@ router.get('/login/google/callback',
 );
 
 router.get('/podcastList', viewController.podcastListView);
-router.get('/adminTest', viewController.adminTestView);
-router.post('/addPodCast', podController.addPodCast);
-router.post('/addPodCastItem', podController.addPodCastItem);
-
-router.get('/admin/:id', viewController.adminPodItemView);
+router.get('/admin/podList', viewController.adminPodListView);
+router.get('/admin/podCastItem/:id', viewController.adminPodItemView);
 router.get('/podcast/:id', viewController.podcastItemView)
 router.get('/audiotest', viewController.audiotestView);
 module.exports = router;
