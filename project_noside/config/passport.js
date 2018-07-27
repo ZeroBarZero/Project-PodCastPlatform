@@ -42,7 +42,9 @@ module.exports = (passport, user) => {
     passReqToCallback: true,
   }, (req, username, password, done) => {
     User.findOne({where:{username:username+"@local"}}).then(function(user){
-      if (user) return done(null, false, {message: '존재하는 아이디입니다.'});
+      if (user){
+        return done(null, false, {'message': '존재하는 아이디입니다.'});
+      }
       else{
         var userPassword = bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         var userData = {
@@ -63,9 +65,14 @@ module.exports = (passport, user) => {
     passReqToCallback: true,
   }, (req, username, password, done) => {
     User.findOne({where:{username:username+"@local", from:'local'}}).then((user) => {
-      if (!user) return done(null, false, { message: '존재하지 않는 아이디입니다' });
+      if (!user){
+        return done(null, false,{'message': '존재하지 않는 아이디입니다.'});
+      }
       else{
-        if(!bCrypt.compareSync(password,user.password)) return done(null, false,{message: '비밀번호가 틀립니다 :>'});
+        if(!bCrypt.compareSync(password,user.password)){
+
+          return done(null, false, {'message': '비밀번호가 맞지 않습니다.'});
+        }
         else {
           return done(null, user.get());
         }

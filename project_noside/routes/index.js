@@ -14,7 +14,8 @@ router.get('/signup', authController.isNotAuthenticated, viewController.signupVi
 
 router.post('/signup', passport.authenticate('local-signup', {
             successRedirect: '/login',
-            failureRedirect: '/signup'
+            failureRedirect: '/login',
+            failureFlash : true
         }));
 
 
@@ -22,7 +23,8 @@ router.get('/login', authController.isNotAuthenticated, viewController.loginView
 
 router.post('/login',passport.authenticate('local-login', {
             successRedirect: '/podcastList',
-            failureRedirect: '/login'
+            failureRedirect: '/login',
+            failureFlash : true
 }));
 
 router.get('/logout', function(req, res){
@@ -40,7 +42,7 @@ router.get('/emailVerification',  authController.isAuthenticated, function(req, 
 });
 router.post('/emailVerification',  authController.isAuthenticated, authController.emailVerification, viewController.userInfoView);
 
-router.get('/auth/emailVerification/', authController.isAuthenticated, authController.emailTokenVerification);
+router.get('/auth/emailVerification/', authController.isAuthenticated, authController.emailTokenVerification, viewController.indexView);
 router.get('/admin', authController.isAuthenticated, viewController.adminView);
 router.get('/404', viewController.pageNotFoundView);
 

@@ -73,7 +73,7 @@ exports.emailTokenVerification = function(req, res, next) {
       }}
     });
 
-  res.redirect('/');
+  next();
 }
 
 exports.isAuthenticated = function(req, res, next) {

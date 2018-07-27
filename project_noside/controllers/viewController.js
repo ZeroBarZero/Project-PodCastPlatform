@@ -20,8 +20,11 @@ exports.signupView = function(req, res) {
 };
 
 exports.loginView = function(req, res) {
+  var message = req.flash('error');
+  if (message == "Missing credentials") message="";
   res.render('./user/login', {
-    isAuthenticated: req.isAuthenticated()
+    isAuthenticated: req.isAuthenticated(),
+    message: message
   });
 };
 
@@ -68,7 +71,6 @@ exports.adminPodListView = function(req, res) {
 exports.adminPodItemView = function(req, res) {
   var id = req.params.id;
   PodCastItem.findAll({where:{id:id}}).then((data) => {
-    console.log(data);
     res.render("./admin-podCastItem",{
       posts: data,
       isAuthenticated: req.isAuthenticated()
