@@ -94,5 +94,5 @@ router.post('/addPodCastItem', podController.addPodCastItem);
 
 router.get('/admin/:id', viewController.adminPodItemView);
 router.get('/podcast/:id', viewController.podcastItemView)
-
+router.get('/audiotest', viewController.audiotestView);
 module.exports = router;

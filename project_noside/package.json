@@ -17,6 +17,7 @@
     "express-ejs-layouts": "^2.4.0",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.3.0",
+    "mediaelement": "^4.2.9",
     "mysql": "^2.16.0",
     "mysql2": "^1.5.3",
     "nodemailer": "^4.6.7",
