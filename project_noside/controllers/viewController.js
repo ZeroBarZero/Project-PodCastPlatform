@@ -73,3 +73,9 @@ exports.adminPodItemView = function(req, res) {
     })
   });
 };
+
+exports.audiotestView = function(req, res) {
+  res.render("./audiotest", {
+    isAuthenticated: req.isAuthenticated()
+  })
+};
