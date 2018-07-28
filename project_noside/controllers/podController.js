@@ -13,11 +13,10 @@ exports.addPodCast = function(req, res, next) {
     if(!newPodcast) console.log("생성되지 않았습니다.");
     else console.log('생성됨');
   })
-  res.redirect('./admin');
+  res.redirect('/admin');
 };
 
 exports.addPodCastItem = function(req, res, next) {
-
   PodCast.findOne({where:{title:req.body.podCast}}).then((podCast)=>{
     if(podCast){
       var itemData ={
@@ -25,7 +24,7 @@ exports.addPodCastItem = function(req, res, next) {
         part: req.body.part,
         title: req.body.title,
         description: req.body.desc,
-        url: req.body.url
+        url: req.file.filename
       }
       PodCastItem.create(itemData).then((newItem, created) => {
         if(!newItem) console.log("생성되지 않았습니다.");
@@ -40,5 +39,5 @@ exports.addPodCastItem = function(req, res, next) {
     else return false;
   });
 
-  res.redirect('./admin');
+  res.redirect('/admin');
 };
