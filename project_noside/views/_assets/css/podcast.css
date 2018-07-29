@@ -2387,7 +2387,7 @@
   }
   .podcast-episodes.golden-theme .heading span,
   .podcast-episodes.golden-theme h3 {
-    color: #F9B600
+    color: #0AF6E2
   }
   .editorial-interstitials {
     border-bottom: 1px solid #FFF
@@ -2493,8 +2493,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, .95) 0, rgba(0, 0, 0, .95) 100%) center;
-    transition: opacity 3s 1s
+    /*background: radial-gradient(ellipse at center, rgba(0, 0, 0, .95) 0, rgba(0, 0, 0, .95) 100%) center;
+    transition: opacity 3s 1s*/
   }
   .podcast-episodes .inner-section .heading {
     position: relative;
