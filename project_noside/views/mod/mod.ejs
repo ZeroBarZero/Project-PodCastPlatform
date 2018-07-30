@@ -1,7 +1,7 @@
 <!-- 관리자 페이지 -->
 <div>
   <h3>팟캐스트 추가</h3>
-  <form action="/admin/addPodCast" method="post">
+  <form action="/mod/addPodcast" method="post">
       <div class="form-group">
           <label>title</label>
           <input type="text" class="form-control" name="title">
@@ -17,7 +17,7 @@
       <button type="submit" class="btn btn-warning btn-lg">확인</button>
   </form>
   <h3>팟캐스트 항목 추가</h3>
-  <form action="/admin/addPodCastItem" method="post" enctype="multipart/form-data">
+  <form action="/mod/addPodItem" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label>podCast</label>
         <input type="text" class="form-control" name="podCast">

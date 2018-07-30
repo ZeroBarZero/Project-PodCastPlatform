@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 var models = require("../models");
 var randomstring = require("randomstring");
-var smtpPool=require('nodemailer-smtp-pool');
+var smtpPool = require('nodemailer-smtp-pool');
 var redisClient = require('../config/redis.js');
 
 
@@ -27,8 +27,8 @@ exports.emailVerification = function(req, res, next) {
                 rejectUnauthorize:false
             },
             auth:{
-                user:'',
-                pass:''
+                user:'ggamangk@gmail.com',
+                pass:'!dongmin15@'
             },
             maxConnections:5,
             maxMessages:10
@@ -66,7 +66,7 @@ exports.emailTokenVerification = function(req, res, next) {
     if (err) console.log(error);
     else{
       if((req.query.email==ans.email) && (req.query.token==ans.token)){
-        User.update({email: req.query.email, isVerificated:true}, {where:{username:req.query.username}})
+        User.update({email: req.query.email, isVerificated:true}, {where:{username:req.user.username}})
             .then(function(result){
               console.log(result);
             });

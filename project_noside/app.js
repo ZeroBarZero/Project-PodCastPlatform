@@ -41,13 +41,13 @@ app.use(session({
     secret: '#s3c*rEt!',
     cookie: { maxAge: 1000 * 60 * 60 }
 }));
-
+require('./config/passport.js')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-var models = require("./models");
 
-require('./config/passport.js')(passport,models.user);
-var routes = require('./routes/index');
-app.use('/',routes);
+var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
+app.use('/', indexRouter);
+app.use('/', authRouter);
 app.listen(3000);

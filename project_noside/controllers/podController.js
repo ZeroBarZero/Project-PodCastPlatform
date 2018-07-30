@@ -2,7 +2,18 @@ var models = require("../models");
 var PodCastItem = models.podCastItem;
 var PodCast = models.podCast;
 
-exports.addPodCast = function(req, res, next) {
+var multer = require("multer");
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/podcast/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, randomstring.generate(16)+".mp3");
+  }
+})
+var upload = multer({storage: storage});
+
+exports.addPodcast = function(req, res, next) {
   var podcastData = {
     title:req.body.title,
     author:req.body.author,
@@ -13,10 +24,10 @@ exports.addPodCast = function(req, res, next) {
     if(!newPodcast) console.log("생성되지 않았습니다.");
     else console.log('생성됨');
   })
-  res.redirect('/admin');
+  res.redirect('/mod');
 };
 
-exports.addPodCastItem = function(req, res, next) {
+exports.addPodItem = function(req, res, next) {
   PodCast.findOne({where:{title:req.body.podCast}}).then((podCast)=>{
     if(podCast){
       var itemData ={
@@ -36,8 +47,7 @@ exports.addPodCastItem = function(req, res, next) {
         }
       })
     }
-    else return false;
   });
 
-  res.redirect('/admin');
+  res.redirect('/mod');
 };

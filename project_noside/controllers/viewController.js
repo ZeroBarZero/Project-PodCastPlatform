@@ -8,12 +8,6 @@ exports.indexView = function(req, res) {
   });
 };
 
-exports.podcastItemView = function(req, res) {
-  res.render('./podCastItem',{
-    isAuthenticated: req.isAuthenticated()
-  });
-};
-
 exports.signupView = function(req, res) {
   res.render('./user/signup',{
     isAuthenticated: req.isAuthenticated()
@@ -46,33 +40,39 @@ exports.pageNotFoundView = function(req, res) {
   });
 };
 
-exports.podcastListView = function(req, res) {
+exports.podListView = function(req, res) {
   // default : 그냥 팟캐스트 목록
   res.render('./podcastList',{
     isAuthenticated: req.isAuthenticated()
   })
 };
 
-exports.adminView = function(req, res) {
+exports.podItemView = function(req, res) {
+  res.render('./podItem',{
+    isAuthenticated: req.isAuthenticated()
+  });
+};
+
+exports.modView = function(req, res) {
   // default : 그냥 팟캐스트 목록
-  res.render('./admin',{
+  res.render('./mod/mod',{
     isAuthenticated: req.isAuthenticated()
   })
 };
 
-exports.adminPodListView = function(req, res) {
+exports.modPodListView = function(req, res) {
   PodCast.findAll().then((data) => {
-    res.render("./admin-podCastList",{
+    res.render("./mod/mod-podList",{
       posts: data,
       isAuthenticated: req.isAuthenticated()
     })
   });
 };
 
-exports.adminPodItemView = function(req, res) {
+exports.modPodItemView = function(req, res) {
   var id = req.params.id;
   PodCastItem.findAll({where:{id:id}}).then((data) => {
-    res.render("./admin-podCastItem",{
+    res.render("./mod/mod-podItem",{
       posts: data,
       isAuthenticated: req.isAuthenticated()
     })

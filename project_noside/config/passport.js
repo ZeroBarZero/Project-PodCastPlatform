@@ -1,5 +1,7 @@
 var bCrypt = require('bcrypt-nodejs');
 var config = require('./config.json');
+var models = require('../models')
+var User = models.user;
 
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -7,19 +9,7 @@ var NaverStrategy = require('passport-naver').Strategy;
 var KakaoStrategy = require('passport-kakao').Strategy;
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-var jwt = require('jsonwebtoken');
-var JwtStrategy = require('passport-jwt').Strategy;
-
-var cookieExtractor = function(req) {
-  var token = null;
-  if (req && req.cookies) token = req.cookies['jwt'];
-  return token;
-}
-
-module.exports = (passport, user) => {
-
-  var User = user;
-
+module.exports = (passport) => {
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
@@ -36,7 +26,7 @@ module.exports = (passport, user) => {
     )
   });
 
-  passport.use('local-signup', new LocalStrategy({ 
+  passport.use('local-signup', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true,
@@ -165,15 +155,5 @@ module.exports = (passport, user) => {
     });
   }
   ));
-
-  passport.use('jwt', new JwtStrategy({
-    jwtFromRequest:cookieExtractor,
-    secretOrKey: 'c#NlD%jqG#krHTl!vek'
-  }, function(payload, done){
-    User.findOne({where:{username: payload.id}}).then((user) => {
-      if(user) done(null, user);
-      else done(null, false);
-    });
-  }));
 
 }
