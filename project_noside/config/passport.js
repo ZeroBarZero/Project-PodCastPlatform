@@ -20,11 +20,11 @@ module.exports = (passport, user) => {
 
   var User = user;
 
-  passport.serializeUser((user, done) => { // Strategy 성공 시 호출됨
-    done(null, user.id); // 여기의 user.id가 deserializeUser의 첫 번째 매개변수로 이동
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
   });
 
-  passport.deserializeUser((id, done) => { // 매개변수 user는 serializeUser의 done의 인자 user를 받은 것
+  passport.deserializeUser((id, done) => {
     User.findById(id).then((user) => {
       if(user){
         done(null,user.get());
@@ -36,7 +36,7 @@ module.exports = (passport, user) => {
     )
   });
 
-  passport.use('local-signup', new LocalStrategy({ // local 전략을 세움
+  passport.use('local-signup', new LocalStrategy({ 
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true,

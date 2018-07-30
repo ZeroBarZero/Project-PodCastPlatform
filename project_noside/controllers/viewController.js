@@ -1,6 +1,7 @@
 var models = require('../models');
 var PodCast = models.podCast;
 var PodCastItem = models.podCastItem;
+
 exports.indexView = function(req, res) {
   res.render('index', {
     isAuthenticated: req.isAuthenticated()
