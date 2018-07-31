@@ -2,17 +2,6 @@ var models = require("../models");
 var PodCastItem = models.podCastItem;
 var PodCast = models.podCast;
 
-var multer = require("multer");
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/podcast/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, randomstring.generate(16)+".mp3");
-  }
-})
-var upload = multer({storage: storage});
-
 exports.addPodcast = function(req, res, next) {
   var podcastData = {
     title:req.body.title,

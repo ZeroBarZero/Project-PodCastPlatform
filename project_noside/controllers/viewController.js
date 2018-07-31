@@ -54,7 +54,6 @@ exports.podItemView = function(req, res) {
 };
 
 exports.modView = function(req, res) {
-  // default : 그냥 팟캐스트 목록
   res.render('./mod/mod',{
     isAuthenticated: req.isAuthenticated()
   })

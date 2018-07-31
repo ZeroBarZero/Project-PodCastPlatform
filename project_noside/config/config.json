@@ -5,7 +5,12 @@
     "database": "noSide",
     "host": "project-db-mysql.c1drtss9bg0n.ap-northeast-2.rds.amazonaws.com",
     "port": "10270",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "pool": {
+      "max": 8,
+      "min": 0,
+      "idle": 10000
+    }
   },
   "redis": {
     "port": 6379,
