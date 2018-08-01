@@ -4,7 +4,7 @@
 	<div id="wrapper">
 
 <div data-announcement-top-bar="/ajax/announcement"></div>
-
+<!--- section -->
 <div class="podcast-episodes golden-theme show-scroll-arrow animate" data-song-index="0" style="background-image: url('/')">
 	<a id="season_two"></a>
 	<div class="inner-section">
@@ -14,15 +14,16 @@
 				</div>
 			</div>
 			<div class="episode-details-wrapper new-episode">
-				<div class="heading"> EP.1 - <span>SECOND SEASON</span> </div>
-				<h3>Of Ms. and Men</h3>
+				<div class="heading"> EP.1 <!-- ejs구문 id?--> - <span>SECOND SEASON <!-- ejs구문 title--></span> </div>
+				<h3>Of Ms. and Men <!-- ejs구문 item-title--></h3>
         	<div id="audio-wrapper-second-first-mobile" class="audio-outer-wrapper">
 					</div>
-          <p>A writer, activist and co-founder of Ms. magazine, Gloria Steinem has played a pivotal role in the women's movement. But she first garnered national attention in 1963 when she went undercover as a Playboy Bunny and wrote a damning expose about her experiences inside the famous men's club.</p>
+          <p> <!-- ejs구문 description-->A writer, activist and co-founder of Ms. magazine, Gloria Steinem has played a pivotal role in the women's movement. But she first garnered national attention in 1963 when she went undercover as a Playboy Bunny and wrote a damning expose about her experiences inside the famous men's club.</p>
 				<div class="control-wrapper">
                     <div id="audio-wrapper-second-first-tablet" class="audio-outer-wrapper">
 						<div class="audio-wrapper show" data-audio-bar="">
-						  <audio class="audio-basic-player" controls="">
+						  <audio class="audio-basic-player" controls=""><!-- ejs구문 title-->
+									<!-- ejs구문 audio src-->
 							    <source src="#" type="audio/mpeg">
 						    </audio>
 						  <div class="audio-controls">
@@ -32,7 +33,8 @@
 									<progress id="song-played-progress-0" amplitude-song-index="0" class="amplitude-song-played-progress" value="0"></progress>
 									<div class="playbutton amplitude-play" amplitude-song-index="0">LISTEN NOW</div>
 								</div>
-								<span class="amplitude-time-remaining" amplitude-song-index="0">24:20</span>
+								<span class="amplitude-time-remaining" amplitude-song-index="0">24:20 <!-- ejs구문 audio-time -->
+							</span>
 								<span class="amplitude-mute amplitude-not-muted"></span>
 							</div>
 					    </div>
@@ -45,6 +47,8 @@
 		</div>
 	</div>
 </div>
+<!-- end section-->
+
 <div class="podcast-episodes golden-theme animate" data-song-index="1" style="background-image: url('/')">
 	<div class="inner-section">
 		<div class="episode-details">
@@ -120,7 +124,7 @@
 						</div>
 					</div>
 					<a class="link-button" target="_blank" href="/">
-						
+
 					</a>
 				</div>
 			</div>
