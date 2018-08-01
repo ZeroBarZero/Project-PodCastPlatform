@@ -23,6 +23,18 @@ module.exports = function(sequelize, Sequelize) {
           type: Sequelize.STRING,
           allowNull: false,
           notEmpty: true
+        },
+        hit: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          notEmpty: true,
+          defaultValue: 0
+        },
+        like: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          notEmpty: true,
+          defaultValue: 0
         }
     },
     {
