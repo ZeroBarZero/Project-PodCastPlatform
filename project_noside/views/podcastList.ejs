@@ -15,6 +15,7 @@
     <div class="forum-list__thread-list">
 
 
+      <% for (let post of posts) {%>
 
       <div id="ember609" class="thread-row forum-list__thread ember-view">
         <div id="ember618" class="user-link thread__user-link ember-view">
@@ -23,7 +24,7 @@
             <img class="user-avatar__img" src="https://storage.googleapis.com/indie-hackers.appspot.com/avatars/72x72_zEICMfGmQKbgPSOKleANGWqL9NG3">
             </span>
             <span class="user-link__username">
-                NOSIDE_admin <!-- ejs구문 author-->
+                <%= post.title %>
             </span>
           </a>
         </div>
@@ -33,13 +34,13 @@
           </path>
           </svg>
           <div class="thread-voter__text">
-            <div class="thread-voter__count"><!-- ejs구문 like--></div>
+            <div class="thread-voter__count"><%= post.like %></div>
           </div>
         </div>
 
         <div class="thread__details">
           <a id="ember647" href="/podItem" class="thread__title ember-view">
-            Welcome NOSIDE STUDIO <!-- ejs구문 title-->
+            <%= post.title %>
           </a>
 
           <div class="thread__metadata">
@@ -49,7 +50,7 @@
                    <img class="user-avatar__img" src="https://storage.googleapis.com/indie-hackers.appspot.com/avatars/72x72_zEICMfGmQKbgPSOKleANGWqL9NG3">
                 </span>
                 <span class="user-link__username">
-                  NOSIDE_admin <!-- ejs구문 author-->
+                  <%= post.author %>
                 </span>
 
 
@@ -60,20 +61,22 @@
 
             <span class="thread__middot">·</span>
 
-            <a id="ember661" title="Sunday, July 29th 2018 (6:19 pm)" href="/" class="thread__date ember-view"> 20 minutes ago <!-- ejs구문 date-->
+            <a id="ember661" title="Sunday, July 29th 2018 (6:19 pm)" href="/" class="thread__date ember-view"> <%= post.createdAt %>
             </a>
             <span class="thread__middot">·</span>
 
-            <a id="ember666" href="/" class="thread__reply-count ember-view"> 4 clicks <!-- ejs구문 조회수?-->
+            <a id="ember666" href="/" class="thread__reply-count ember-view"> <%= post.hit %>
             </a>
             <!---->
           </div>
         </div>
 
         </div>
-
+<% }; %>
     </div>
+
   </section>
+
 </div>
 
 </div>

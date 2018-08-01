@@ -41,10 +41,12 @@ exports.pageNotFoundView = function(req, res) {
 };
 
 exports.podListView = function(req, res) {
-  // default : 그냥 팟캐스트 목록
-  res.render('./podcastList',{
-    isAuthenticated: req.isAuthenticated()
-  })
+  PodCast.findAll().then((data) => {
+    res.render('./podcastList',{
+      isAuthenticated: req.isAuthenticated(),
+      posts: data
+    })
+  });
 };
 
 exports.podItemView = function(req, res) {
