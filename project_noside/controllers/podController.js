@@ -6,7 +6,7 @@ exports.addPodcast = function(req, res, next) {
   var podcastData = {
     title:req.body.title,
     author:req.body.author,
-    description:req.body.desc,
+    description:req.body.desc
   };
 
   PodCast.create(podcastData).then((newPodcast, created) => {

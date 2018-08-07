@@ -11,7 +11,8 @@ var storage = multer.diskStorage({
     cb(null, './public/podcast/')
   },
   filename: function (req, file, cb) {
-    cb(null, randomstring.generate(16)+".mp3");
+    var prefix = req.body.podCast +"_"+ req.body.part+"_";
+    cb(null, prefix+randomstring.generate(8)+".mp3");
   }
 })
 var upload = multer({storage: storage});
