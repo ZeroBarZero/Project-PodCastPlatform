@@ -1,4 +1,9 @@
 <style>
+
+#table-wrap {
+  width: 80%;
+  margin: 60px 0;
+}
 div.greyGridTable {
   border: 2px solid #FFFFFF;
   width: 100%;
@@ -49,6 +54,7 @@ div.greyGridTable {
 .divTableBody { display: table-row-group;}
 </style>
 
+<div id= table-wrap>
 <div class="divTable greyGridTable">
   <div class="divTableHeading">
     <div class="divTableRow">
@@ -61,11 +67,12 @@ div.greyGridTable {
     <div class="divTableBody">
     <% for (let post of posts) { %>
     <div class="divTableRow">
-    <div class="divTableCell"><a href="/mod/podItem/<%= post.id %>"><%= post.id %></a></div>
+    <div class="divTableCell"><a href="/admin/podCastItem/<%= post.id %>"><%= post.id %></a></div>
     <div class="divTableCell"><%= post.title %></div>
     <div class="divTableCell"><%= post.author %></div>
     <div class="divTableCell"><%= post.description %></div>
     </div>
     <% }; %>
   </div>
+</div>
 </div>
