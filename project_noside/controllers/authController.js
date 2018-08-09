@@ -27,8 +27,8 @@ exports.emailVerification = function(req, res, next) {
                 rejectUnauthorize:false
             },
             auth:{
-                user:'ggamangk@gmail.com',
-                pass:'!dongmin15@'
+                user:'',
+                pass:''
             },
             maxConnections:5,
             maxMessages:10

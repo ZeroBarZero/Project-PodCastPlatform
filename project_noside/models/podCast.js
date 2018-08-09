@@ -19,6 +19,12 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: false,
             notEmpty: true
         },
+        avatar: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            notEmpty: true,
+              defaultValue: "default.png"
+        },
         description: {
           type: Sequelize.STRING,
           allowNull: false,

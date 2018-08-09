@@ -4,7 +4,7 @@
 <div id="wrapper">
 
 <div data-announcement-top-bar="/ajax/announcement"></div>
-<!--- section -->
+<% for (let post of posts) { %>
 <div class="podcast-episodes golden-theme show-scroll-arrow animate" data-song-index="0" style="background-image: url('/')">
 	<a id="season_two"></a>
 	<div class="inner-section">
@@ -14,17 +14,16 @@
 				</div>
 			</div>
 			<div class="episode-details-wrapper new-episode">
-				<div class="heading"> EP.1 <!-- ejs구문 id?--> - <span>SECOND SEASON <!-- ejs구문 title--></span> </div>
-				<h3>Of Ms. and Men <!-- ejs구문 item-title--></h3>
+				<div class="heading"> <%= post.part %> - <span><%= podCast %></span> </div>
+				<h3><%=post.title %></h3>
         	<div id="audio-wrapper-second-first-mobile" class="audio-outer-wrapper">
 					</div>
-          <p> <!-- ejs구문 description-->A writer, activist and co-founder of Ms. magazine, Gloria Steinem has played a pivotal role in the women's movement. But she first garnered national attention in 1963 when she went undercover as a Playboy Bunny and wrote a damning expose about her experiences inside the famous men's club.</p>
+          <p><%=post.description %></p>
 				<div class="control-wrapper">
                     <div id="audio-wrapper-second-first-tablet" class="audio-outer-wrapper">
 						<div class="audio-wrapper show" data-audio-bar="">
-						  <audio class="audio-basic-player" controls=""><!-- ejs구문 title-->
-									<!-- ejs구문 audio src-->
-							    <source src="#" type="audio/mpeg">
+						  <audio class="audio-basic-player" controls="">
+							    <source src="http://localhost:3000/public/<%= post.url %>" type="audio/mpeg">
 						    </audio>
 						  <div class="audio-controls">
 								<span class="button amplitude-play-pause amplitude-paused" amplitude-song-index="0"></span>
@@ -47,90 +46,8 @@
 		</div>
 	</div>
 </div>
-<!-- end section-->
-<div class="podcast-episodes golden-theme animate" data-song-index="1" style="background-image: url('/')">
-	<div class="inner-section">
-		<div class="episode-details">
-			<div class="illustration small-image left-align">
-				<div class="illustration-sleeve">
+<% }; %>
 
-				</div>
-			</div>
-			<div class="episode-details-wrapper new-episode">
-				<div class="heading"> EP.2 - <span>SECOND SEASON</span> </div>
-				<h3>The Playboy Mystique </h3>
-				<div id="audio-wrapper-second-second-mobile" class="audio-outer-wrapper">
-				</div>
-				<p> Riding the wave of the sexual revolution of the 1950s and 1960s, Hugh Hefner created a male fantasy world in the pages of his <i>Playboy</i> magazine, one that would have lasting consequences for American life and culture. Behind closed doors, however, Hefner's life in the celebrated Playboy mansion was rather different than the sophisticated one portrayed in his magazine. </p>
-				<div class="control-wrapper">
-					<div id="audio-wrapper-second-second-tablet" class="audio-outer-wrapper">
-						<div class="audio-wrapper show" data-audio-bar="">
-						 	<audio class="audio-basic-player" controls="">
-							    <source src="/" type="audio/mpeg">
-						    </audio>
-
-							<div class="audio-controls">
-								<span class="button amplitude-play-pause amplitude-paused" amplitude-song-index="1"></span>
-								 <div class="progress-bar">
-									<input type="range" id="amplitude-song-slider-1" class="amplitude-song-slider" amplitude-song-index="1" step=".1">
-									<progress id="song-played-progress-1" amplitude-song-index="1" class="amplitude-song-played-progress" value="0"></progress>
-									<div class="playbutton amplitude-play" amplitude-song-index="1">LISTEN NOW</div>
-								</div>
-								<span class="amplitude-time-remaining" amplitude-song-index="1">30:31</span>
-								<span class="amplitude-mute amplitude-not-muted"></span>
-							</div>
-						</div>
-					</div>
-					<a class="link-button" target="_blank" href="/">
-
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="podcast-episodes golden-theme animate" data-song-index="2" style="background-image: url('/')">
-	<div class="inner-section">
-		<div class="episode-details">
-			<div class="illustration small-image">
-				<div class="illustration-sleeve">
-
-				</div>
-			</div>
-			<div class="episode-details-wrapper new-episode">
-				<div class="heading"> EP.3 - <span>SECOND SEASON</span> </div>
-				<h3>The Woman Who Will Not Die</h3>
-				<div id="audio-wrapper-second-third-mobile" class="audio-outer-wrapper">
-				</div>
-				<p>Marilyn Monroe was larger than life. But beneath the soft-spoken movie star and sex goddess was another woman, one far bolder than most people realize. Monroe was an actress ahead of her time, one who was not afraid to stand up to some of the most powerful men in Hollywood — the men she called the "wolves."</p>
-				<div class="control-wrapper">
-					<div id="audio-wrapper-second-third-tablet" class="audio-outer-wrapper">
-						<div class="audio-wrapper show" data-audio-bar="">
-						 	<audio class="audio-basic-player" controls="">
-							    <source src="/" type="audio/mpeg">
-						    </audio>
-
-							<div class="audio-controls">
-								<span class="button amplitude-play-pause amplitude-paused" amplitude-song-index="2"></span>
-								 <div class="progress-bar">
-									<input type="range" id="amplitude-song-slider-2" class="amplitude-song-slider" amplitude-song-index="2" step=".1">
-									<progress id="song-played-progress-2" amplitude-song-index="2" class="amplitude-song-played-progress" value="0"></progress>
-									<div class="playbutton amplitude-play" amplitude-song-index="2">LISTEN NOW</div>
-								</div>
-								<span class="amplitude-time-remaining" amplitude-song-index="2">26:52</span>
-								<span class="amplitude-mute amplitude-not-muted"></span>
-							</div>
-						</div>
-					</div>
-					<a class="link-button" target="_blank" href="/">
-
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
 <!--
 <div class="audio-playlist golden-theme" data-audio-playlist="">
     <div class="playlist-dialog">

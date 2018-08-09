@@ -1,42 +1,41 @@
 <style>
-div.greyGridTable {
-  border: 2px solid #FFFFFF;
+#table-wrap {
+  width: 80%;
+  margin: 60px 0;
+}
+div.minimalistBlack {
+  border: 3px solid #000000;
   width: 100%;
-  text-align: center;
+  text-align: left;
   border-collapse: collapse;
 }
-.divTable.greyGridTable .divTableCell, .divTable.greyGridTable .divTableHead {
-  border: 1px solid #FFFFFF;
-  padding: 3px 4px;
+.divTable.minimalistBlack .divTableCell, .divTable.minimalistBlack .divTableHead {
+  border: 1px solid #000000;
+  padding: 5px 4px;
 }
-.divTable.greyGridTable .divTableBody .divTableCell {
+.divTable.minimalistBlack .divTableBody .divTableCell {
   font-size: 13px;
 }
-.divTable.greyGridTable .divTableCell:nth-child(even) {
-  background: #EBEBEB;
+.divTable.minimalistBlack .divTableHeading {
+  background: #009a88;
+  background: -moz-linear-gradient(top, #08a694 0%, #099d8c 66%, #03b49f 100%);
+  background: -webkit-linear-gradient(top, #08a694 0%, #099d8c 66%, #03b49f 100%);
+  background: linear-gradient(to bottom, #08a694 0%, #099d8c 66%, #03b49f 100%);
+  border-bottom: 3px solid #000000;
 }
-.divTable.greyGridTable .divTableHeading {
-  background: #FFFFFF;
-  border-bottom: 4px solid #333333;
-}
-.divTable.greyGridTable .divTableHeading .divTableHead {
+.divTable.minimalistBlack .divTableHeading .divTableHead {
   font-size: 15px;
   font-weight: bold;
-  color: #333333;
-  text-align: center;
-  border-left: 2px solid #333333;
+  color: #000000;
+  text-align: left;
 }
-.divTable.greyGridTable .divTableHeading .divTableHead:first-child {
-  border-left: none;
-}
-
-.greyGridTable .tableFootStyle {
+.minimalistBlack .tableFootStyle {
   font-size: 14px;
   font-weight: bold;
-  color: #333333;
-  border-top: 4px solid #333333;
+  color: #000000;
+  border-top: 3px solid #000000;
 }
-.greyGridTable .tableFootStyle {
+.minimalistBlack .tableFootStyle {
   font-size: 14px;
 }
 /* DivTable.com */
@@ -49,25 +48,27 @@ div.greyGridTable {
 .divTableBody { display: table-row-group;}
 </style>
 
-<div class="divTable greyGridTable">
-  <div class="divTableHeading">
-    <div class="divTableRow">
-      <div class="divTableHead">ID</div>
-      <div class="divTableHead">Part</div>
-      <div class="divTableHead">Title</div>
-      <div class="divTableHead">Description</div>
-      <div class="divTableHead">url</div>
+<div id="table-wrap">
+  <div class="divTable minimalistBlack">
+    <div class="divTableHeading">
+      <div class="divTableRow">
+        <div class="divTableHead">ID</div>
+        <div class="divTableHead">Part</div>
+        <div class="divTableHead">Title</div>
+        <div class="divTableHead">Description</div>
+        <div class="divTableHead">url</div>
+      </div>
     </div>
-  </div>
-    <div class="divTableBody">
-    <% for (let post of posts) { %>
-    <div class="divTableRow">
-    <div class="divTableCell"><%= post.id %></div>
-    <div class="divTableCell"><%= post.part %></div>
-    <div class="divTableCell"><%= post.title %></div>
-    <div class="divTableCell"><%= post.description %></div>
-    <div class="divTableCell"><%= post.url %></div>
+      <div class="divTableBody">
+      <% for (let post of posts) { %>
+      <div class="divTableRow">
+      <div class="divTableCell"><%= post.id %></div>
+      <div class="divTableCell"><%= post.part %></div>
+      <div class="divTableCell"><%= post.title %></div>
+      <div class="divTableCell"><%= post.description %></div>
+      <div class="divTableCell"><%= post.url %></div>
+      </div>
+      <% }; %>
     </div>
-    <% }; %>
-  </div>
+  <div>
 </div>

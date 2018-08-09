@@ -16,7 +16,7 @@ app.use('/css', express.static(path.join(__dirname,'views','_assets','css')));
 app.use('/js', express.static(path.join(__dirname,'views','_assets','js')));
 app.use('/img', express.static(path.join(__dirname,'views','_assets','img')));
 app.use('/public', express.static(path.join(__dirname,'public','podcast')));
-
+app.use('/avatar', express.static(path.join(__dirname,'public','avatar')));
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layout');

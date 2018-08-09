@@ -28,7 +28,7 @@ router.get('/userInfo', authController.isAuthenticated,viewController.userInfoVi
 router.get('/podItem', authController.isAuthenticated,viewController.podItemView);
 
 router.get('/podList', viewController.podListView);
-router.get('/podcast/:id', viewController.podItemView);
+router.get('/podItem/:id', viewController.podItemView);
 
 
 router.get('/mod', authController.isAuthenticated, viewController.modView);

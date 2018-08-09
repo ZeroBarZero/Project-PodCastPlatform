@@ -50,8 +50,23 @@ exports.podListView = function(req, res) {
 };
 
 exports.podItemView = function(req, res) {
-  res.render('./podItem',{
-    isAuthenticated: req.isAuthenticated()
+  var id = req.params.id;
+  var _podCast = "";
+
+  PodCast.findOne({where:{id:id}}).then((data) => {
+    var hit = data.hit;
+    _podCast = data.title;
+    PodCast.update({hit:hit+1},{where:{id:data.id}}).then(function(result) {
+      // do something
+    })
+  });
+
+  PodCastItem.findAll({where:{id:id}}).then((data) => {
+    res.render("./podItem",{
+      posts: data,
+      isAuthenticated: req.isAuthenticated(),
+      podCast: _podCast
+    })
   });
 };
 
@@ -71,11 +86,11 @@ exports.modPodListView = function(req, res) {
 };
 
 exports.modPodItemView = function(req, res) {
-  var id = req.params.id;
   PodCastItem.findAll({where:{id:id}}).then((data) => {
     res.render("./mod/mod-podItem",{
       posts: data,
-      isAuthenticated: req.isAuthenticated()
+      isAuthenticated: req.isAuthenticated(),
+      id: id
     })
   });
 };
