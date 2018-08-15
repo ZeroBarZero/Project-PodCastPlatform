@@ -1,4 +1,5 @@
 var models = require("../models");
+var aws = require('aws-sdk');
 var PodCastItem = models.podCastItem;
 var PodCast = models.podCast;
 
@@ -24,7 +25,7 @@ exports.addPodItem = function(req, res, next) {
         part: req.body.part,
         title: req.body.title,
         description: req.body.desc,
-        url: req.file.filename
+        url: req.file.key
       }
       PodCastItem.create(itemData).then((newItem, created) => {
         if(!newItem) console.log("생성되지 않았습니다.");

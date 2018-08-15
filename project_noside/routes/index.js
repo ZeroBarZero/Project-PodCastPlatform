@@ -6,15 +6,23 @@ var podController = require('../controllers/podController');
 var randomstring = require('randomstring');
 
 var multer = require("multer");
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/podcast/')
-  },
-  filename: function (req, file, cb) {
+var multerS3 = require("multer-s3");
+var aws = require('aws-sdk');
+
+var s3 = new aws.S3({
+  "accessKeyId": "AKIAJ63W5B3VP5R7XKWQ",
+  "secretAccessKey": "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",
+  "region": "ap-northeast-2"});
+
+var storage = multerS3({
+  s3: s3,
+  bucket: 'noside-project-cdn',
+  key: function (req, file, cb) {
     var prefix = req.body.podCast +"_"+ req.body.part+"_";
     cb(null, prefix+randomstring.generate(8)+".mp3");
-  }
-})
+  },
+  acl: 'public-read'
+});
 var upload = multer({storage: storage});
 
 var router = express.Router();
