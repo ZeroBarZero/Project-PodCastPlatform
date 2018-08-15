@@ -10,8 +10,8 @@ var multerS3 = require("multer-s3");
 var aws = require('aws-sdk');
 
 var s3 = new aws.S3({
-  "accessKeyId": "AKIAJ63W5B3VP5R7XKWQ",
-  "secretAccessKey": "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",
+  "accessKeyId": "",
+  "secretAccessKey": "",
   "region": "ap-northeast-2"});
 
 var storage = multerS3({
