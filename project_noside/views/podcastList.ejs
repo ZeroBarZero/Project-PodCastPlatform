@@ -1,84 +1,85 @@
-
-<div class="ember-view" id="ember333"><!---->
-
-<!---->
-<!---->
-<div class="forum">
-<div class="forum-list">
-<div class="forum-list__content">
-
-
-
-  <section class="forum-list__threads
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div id="app">
+  <div class="ember-view" id="ember333">
+    <div class="forum">
+      <div class="forum-list">
+        <div class="forum-list__content">
+          <section class="forum-list__threads
                     no-thread-animations">
 
-    <div class="forum-list__thread-list">
+            <div class="forum-list__thread-list">
 
+              <p id = "recp">개발자다이어리</p>
+              <% for (let post of posts) {%>
 
-      <% for (let post of posts) {%>
+              <div id="ember609" class="thread-row forum-list__thread ember-view">
+                <div id="ember618" class="user-link thread__user-link ember-view">
+                  <a id="ember621" href="#" class="user-link__link ember-view">
+                    <span id="ember642" class="user-avatar user-link__avatar ember-view">
+                      <img class="user-avatar__img" src="http://localhost:3000/avatar/<%= post.avatar %>">
+                    </span>
+                    <span class="user-link__username">
+                      <%= post.title %>
+                    </span>
+                  </a>
+                </div>
+                <div id="ember645" class="thread-voter ember-view">
+                  <svg id="ember646" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="thread-voter__icon ember-view">
+                    <path d="M0 15.878 l12-11.878 12 11.878-4 4.122-8-8-8 8-4-4.122z">
+                    </path>
+                  </svg>
+                  <div class="thread-voter__text">
+                    <div class="thread-voter__count">
+                      <%= post.rating %>
+                    </div>
+                  </div>
+                </div>
 
-      <div id="ember609" class="thread-row forum-list__thread ember-view">
-        <div id="ember618" class="user-link thread__user-link ember-view">
-          <a id="ember621" href="#" class="user-link__link ember-view">
-            <span id="ember642" class="user-avatar user-link__avatar ember-view">
-            <img class="user-avatar__img" src="http://localhost:3000/avatar/<%= post.avatar %>">
-            </span>
-            <span class="user-link__username">
-                <%= post.title %>
-            </span>
-          </a>
-        </div>
-        <div id="ember645" class="thread-voter ember-view">
-          <svg id="ember646" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="thread-voter__icon ember-view">
-          <path d="M0 15.878 l12-11.878 12 11.878-4 4.122-8-8-8 8-4-4.122z">
-          </path>
-          </svg>
-          <div class="thread-voter__text">
-            <div class="thread-voter__count"><%= post.like %></div>
-          </div>
-        </div>
+                <div class="thread__details">
+                  <a id="ember647" href="/podItem/<%= post.id %>" class="thread__title ember-view">
+                    <%= post.title %>
+                  </a>
 
-        <div class="thread__details">
-          <a id="ember647" href="/podItem/<%= post.id %>" class="thread__title ember-view">
-            <%= post.title %>
-          </a>
+                  <div class="thread__metadata">
+                    <div id="ember658" class="user-link thread-metadata__user-link ember-view">
+                      <a id="ember659" href="/user/MattWalter?id=zEICMfGmQKbgPSOKleANGWqL9NG3" class="user-link__link ember-view">
+                        <span id="ember660" class="user-avatar user-link__avatar ember-view">
+                          <img class="user-avatar__img" src="https://storage.googleapis.com/indie-hackers.appspot.com/avatars/72x72_zEICMfGmQKbgPSOKleANGWqL9NG3">
+                        </span>
+                        <span class="user-link__username">
+                          <%= post.author %>
+                        </span>
+                      </a>
+                    </div>
+                    <span class="thread__middot">·</span>
+                    <a id="ember661" title="Sunday, July 29th 2018 (6:19 pm)" href="/" class="thread__date ember-view">
+                      <%= post.createdAt %>
+                    </a>
+                    <span class="thread__middot">·</span>
 
-          <div class="thread__metadata">
-            <div id="ember658" class="user-link thread-metadata__user-link ember-view">
-              <a id="ember659" href="/user/MattWalter?id=zEICMfGmQKbgPSOKleANGWqL9NG3" class="user-link__link ember-view">
-                 <span id="ember660" class="user-avatar user-link__avatar ember-view">
-                   <img class="user-avatar__img" src="https://storage.googleapis.com/indie-hackers.appspot.com/avatars/72x72_zEICMfGmQKbgPSOKleANGWqL9NG3">
-                </span>
-                <span class="user-link__username">
-                  <%= post.author %>
-                </span>
-
-
-
-                <!----></a>
-              <!---->
+                    <a id="ember666" href="/" class="thread__reply-count ember-view">
+                      <%= post.hit %>
+                    </a>
+                    <!---->
+                  </div>
+                </div>
+                  <input type="text" id="value<%= post.id %>"/>                
+                  <button onclick="recf(<%= post.id %>)">☆</button>
+              </div>
+              <% }; %>
             </div>
-
-            <span class="thread__middot">·</span>
-
-            <a id="ember661" title="Sunday, July 29th 2018 (6:19 pm)" href="/" class="thread__date ember-view"> <%= post.createdAt %>
-            </a>
-            <span class="thread__middot">·</span>
-
-            <a id="ember666" href="/" class="thread__reply-count ember-view"> <%= post.hit %>
-            </a>
-            <!---->
-          </div>
+          </section>
         </div>
-
-        </div>
-<% }; %>
+      </div>
     </div>
-
-  </section>
-
+  </div>
 </div>
-
-</div>
-</div>
-</div>
+<script>
+  function recf(id) {
+    value = $("#value"+id).val()
+    axios.post('/getRecommend', {'id':id, 'value':value}).then(res => {
+      $("#recp").text(res.data)
+    })
+  }
+</script>
