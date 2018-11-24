@@ -100,3 +100,9 @@ exports.audiotestView = function(req, res) {
     isAuthenticated: req.isAuthenticated()
   })
 };
+
+exports.recommendView = function(req, res) {
+  res.render("./recommendTest", {
+    isAuthenticated: req.isAuthenticated()
+  })
+};
